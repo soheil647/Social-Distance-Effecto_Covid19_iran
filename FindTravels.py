@@ -1,84 +1,47 @@
 import os
 import glob
 import pandas as pd
-import datetime
-
-
-def Insert_row_(row_number, df, row_value):
-    # Slice the upper half of the dataframe
-    df1 = df[0:row_number]
-
-    # Store the result of lower half of the dataframe
-    df2 = df[row_number:]
-
-    # Inser the row in the upper half dataframe
-    df1.loc[row_number] = row_value
-
-    # Concat the two dataframes
-    df_result = pd.concat([df1, df2])
-
-    # Reassign the index labels
-    df_result.index = [*range(df_result.shape[0])]
-
-    # Return the updated dataframe
-    return df_result
-
-
-def create_time(year, month, day):
-    if day < 10:
-        day = '0' + str(day)
-    return str(year) + '/' + str(month) + '/' + str(day) + ' ' + '00:00:00'
-
-
-def seperate_time(month_df):
-    # month_df['زمان شروع'] = month_df['زمان شروع'].str.split(pat='/')
-    print(month_df['زمان پایان'].str.split(pat='/').map(lambda x: x[2]))
-    month_df.loc[:, 'finish_time'] = month_df['زمان پایان'].str.split(pat='/').map(lambda x: x[2]).str.split(
-        pat=' ').map(lambda x: x[1])
-    month_df.loc[:, 'start_time'] = month_df['زمان شروع'].str.split(pat='/').map(lambda x: x[2]).str.split(pat=' ').map(
-        lambda x: x[1])
-    month_df.loc[:, 'finish_day'] = month_df['زمان پایان'].str.split(pat='/').map(lambda x: x[2]).str.split(
-        pat=' ').map(lambda x: x[0])
-    month_df.loc[:, 'start_day'] = month_df['زمان شروع'].str.split(pat='/').map(lambda x: x[2]).str.split(pat=' ').map(
-        lambda x: x[0])
-
-    k = 0
-    for i in range(len(month_df)):
-        k = k + 1
-        # print(month_df['کد محور'][i])
-        if month_df['کد محور'][i] == 113253:
-            if int(month_df['start_day'][i]) == k:
-                continue
-            line = pd.DataFrame(
-                {"کد محور": 113253, "زمان شروع": create_time(1398, 10, k), "زمان پایان": create_time(1398, 10, k+1), "finish_time": "00:00:00", "start_time": "00:00:00", "finish_day": k + 1,
-                 "start_day": k}, index=[k])
-            # line = pd.DataFrame()
-            print(create_time(1398, 9, k))
-            print(month_df.loc[3].values)
-            month_df = pd.concat([month_df.iloc[:i], line, month_df.iloc[i:]]).reset_index(drop=True)
-
-    month_df.fillna(0, inplace=True)
-    month_df.to_csv("test.xlsx", index=False)
 
 
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
+my_columns = ['mehvar_code', 'mehvar_name', "start_time", "finish_time", 'duration', 'total', 'class1', 'class2',
+              'class3', 'class4', 'class5', 'average_speed', 'speed_punish', 'distance_punish', 'sebghat_punish',
+              'total_cars']
+
+extra_files = ["Model.py", "FindTravels.py", "Travels", "Append_CSVs.py", "CorrectDatas.py"]
 extension = 'xlsx'
 os.chdir("/home/sspc/Desktop/Datas/")
 all_excels = [i for i in glob.glob('*.{}'.format(extension))]
-for excel in all_excels:
-    os.remove(excel)
 
-extra_files = ["MergeCSVs.py", "FindTravels.py", "Travels"]
 all_cities = [i for i in glob.glob('*') if i not in extra_files]
 for city in all_cities:
     os.chdir("/home/sspc/Desktop/Datas/" + city)
     all_excels = [i for i in glob.glob('*.{}'.format(extension))]
 
-    # for month_excel in all_excels:
-    month_df = pd.read_csv(all_excels[0])
-    # month_df = month_df.iloc[:, ::-1]
-    # print(month_df.head())
-    print(seperate_time(month_df))
+    all_folders = [i for i in glob.glob('*') if i not in extra_files]
+    for folder in all_folders:
+        os.chdir("/home/sspc/Desktop/Datas/" + city + '/' + folder)
+        combined_csv = pd.DataFrame()
+        frame = []
+        df = pd.read_csv('test.xlsx')
+        new_df = pd.DataFrame(columns=['date', 'class1', 'class2', 'class3', 'class4', 'class5', 'total', 'total_cars', 'is_copy'])
+        for i in range(int(df['start_time'].str.split(pat='/')[len(df) - 1][2].split(' ')[0])):
+            sum_columns = dict.fromkeys(
+                ['class1', 'class2', 'class3', 'class4', 'class5', 'total', 'total_cars', 'is_copy'], 0)
+            # this_date = df['start_time'].str.split(pat=' ')[i][0]
+            for j in range(len(df)):
+                if int(df['start_time'].str.split(pat='/')[j][2].split(' ')[0]) == i + 1:
+                    # print(df['start_time'][j])
+                    for key in sum_columns.keys():
+                        sum_columns[key] += df[key][j]
+            sum_columns['date'] = df['start_time'].str.split(pat=' ')[i][0]
+            new_df = new_df.append(sum_columns, ignore_index=True)
+            print(new_df)
+            # days[this_date] = sum_columns
+            # print(days)
+        os.chdir("/home/sspc/Desktop/Datas/" + city)
+        new_df.to_csv(folder + '_' + city + '.xlsx')
+        # break
