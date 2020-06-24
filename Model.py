@@ -1,74 +1,101 @@
 import pandas as pd
 import numpy as np
-import sklearn
+from sklearn.metrics import mean_squared_error, mean_absolute_error
 from sklearn.model_selection import train_test_split
-from sklearn import linear_model
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.svm import SVR
-
-pd.set_option('display.max_rows', 500)
-pd.set_option('display.max_columns', 500)
-pd.set_option('display.width', 1000)
-
-def vector_regression(X_train, y_train):
-    regressor = SVR(kernel='rbf')
-    X_train = X_train.reshape(-1, 1)
-    regressor.fit(X_train, y_train)
-    # 5 Predicting a new result
-    y_pred = regressor.predict(6.5)
-    df = pd.DataFrame({'Actual': y_train, 'Predicted': y_pred})
-    print(df)
+from sklearn.linear_model import LogisticRegression, LinearRegression, Ridge, Lasso, BayesianRidge, SGDRegressor
+import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeRegressor
 
 
-def linear_regression(X_train, X_test, y_train, y_test):
-    logistic = linear_model.LinearRegression()
-    logistic.fit(X_train, y_train)
+class ModelCreator:
+    """
+    Models Are; svr, knn, tree, logistic, linear, ridge, lasso, bayesian, sgd
+    Set test_split_available to split test and train
+    """
+    def __init__(self, x_train, y_train, model_name, test_split_available=False):
+        if test_split_available:
+            self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(x_train, y_train, test_size=0.1, shuffle=False)
+            # self.x_train = x_train[:int(0.9*len(x_train))]
+            # self.y_train = y_train[:int(0.9*len(y_train))]
+            # self.x_test = x_train[int(0.9*len(x_train)):]
+            # self.y_test = y_train[int(0.9*len(x_train)):]
+            print(self.x_train, self.x_test)
+        else:
+            self.x_test = x_train
+            self.y_test = y_train
+            self.x_train = x_train
+            self.y_train = y_train
+        self.y_predict_test = {}
+        self.y_predict_train = {}
+        self.models = {'svr': SVR(), 'knn': KNeighborsRegressor(), 'tree': DecisionTreeRegressor(),
+                       'logistic': LogisticRegression(), 'linear': LinearRegression(), 'ridge': Ridge(),
+                       'lasso': Lasso(), 'bayesian': BayesianRidge(), 'sgd': SGDRegressor()}
+        self.model = self.models[model_name]
+        self.model_name = model_name
 
-    y_predict_train = logistic.predict(X_train)
-    y_predict = logistic.predict(X_test)
-    df = pd.DataFrame({'Actual': y_test, 'Predicted': y_predict})
-    print(df)
+    def fit(self, show_train_error=False, show_output=False):
+        regr = self.model
+        regr.fit(self.x_train, self.y_train)
+        self.y_predict_test = regr.predict(self.x_test)
+        self.y_predict_train = regr.predict(self.x_train)
+        if show_output:
+            df = pd.DataFrame({'Actual': self.y_test, 'Predicted': self.y_predict_test})
+            print(df)
 
-    # print("Logistic Classifier")
-    # print("For Train Predicts\n", sklearn.metrics.classification_report(y_train, y_predict_train))
-    # print("Accuracy: ", sklearn.metrics.accuracy_score(y_train, y_predict_train))
-    # print("For Test Predicts\n", sklearn.metrics.classification_report(y_test, y_predict))
-    # print("Accuracy: ", sklearn.metrics.accuracy_score(y_test, y_predict))
-    # print("\n")
+        print("########### Test Error for Model name: ", self.model_name, " ###########")
+        print('Mean Absolute Error:', mean_absolute_error(self.y_test, self.y_predict_test))
+        print('Mean Squared Error:', mean_squared_error(self.y_test, self.y_predict_test))
+        print('Root Mean Squared Error:', np.sqrt(mean_squared_error(self.y_test, self.y_predict_test)))
 
-    plt.plot(y_test,  color='gray')
-    # plt.plot(X_test, y_predict, color='red', linewidth=2)
-    plt.show()
-    print('Mean Absolute Error:', sklearn.metrics.mean_absolute_error(y_test, y_predict))
-    print('Mean Squared Error:', sklearn.metrics.mean_squared_error(y_test, y_predict))
-    print('Root Mean Squared Error:', np.sqrt(sklearn.metrics.mean_squared_error(y_test, y_predict)))
+        if show_train_error:
+            print("########### Train Error for ###########")
+            print('Mean Absolute Error:', mean_absolute_error(self.y_train, self.y_predict_train))
+            print('Mean Squared Error:', mean_squared_error(self.y_train, self.y_predict_train))
+            print('Root Mean Squared Error:', np.sqrt(mean_squared_error(self.y_train, self.y_predict_train)))
+        print()
 
+    def plot_input(self, custom_figure, custom_column):
+        custom_figure()
+        plt.title('Daily New Corona Virus Cases')
+        plt.xlabel('Day')
+        plt.ylabel('New Cases')
+        plt.plot(self.y_train)
+        plt.show()
+        plt.title(custom_column)
+        plt.xlabel('Day')
+        plt.ylabel(custom_column)
+        plt.plot(self.x_train[custom_column])
+        plt.show()
 
-df = pd.read_excel('Travel_data.xlsx', index_col='Date')
-df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
-y_train = df['Daily New Cases']
-del df['Daily New Cases']
-x_train = df
-# x_train = df['total_cars']
-# y_train = np.reshape(list(y_train), (-1,1))
-# # x_train = np.reshape(list(x_train), (-1,1))
-# sc_X = StandardScaler()
-# sc_y = StandardScaler()
-# X = sc_X.fit_transform(x_train)
-# y = sc_y.fit_transform(y_train)
+    def plot_output(self, custom_figure, test_target):
+        custom_figure()
+        if test_target:
+            predicted, = plt.plot(self.y_predict_test, label='Predicted')
+            actual, = plt.plot(self.y_test, label='Actual')
+        else:
+            predicted, = plt.plot(self.y_predict_train, label='Predicted')
+            actual, = plt.plot(self.y_train, label='Actual')
+        plt.xlabel('Day')
+        plt.ylabel('New Cases')
+        plt.title(self.model_name)
+        plt.legend = ['Predict', 'Actual']
+        plt.legend = [predicted, actual]
+        plt.show()
 
-# Create a minimum and maximum processor object
-min_max_scaler = MinMaxScaler()
-
-# Create an object to transform the data to fit minmax processor
-x_scaled = min_max_scaler.fit_transform(x)
-
-# Run the normalizer on the dataframe
-df_normalized = pd.DataFrame(x_scaled)
-
-# print(X)
-# X_train, X_test, y_train, y_test = train_test_split(x_train, y_train, test_size=0.1, random_state=42)
-# print(x_train)
-linear_regression(x_train, x_train, y_train, y_train)
-# vector_regression(X, y)
+    def train_model(self, custom_figure=plt.figure, custom_column='total_cars', test_target=True, plot_input=False,
+                    plot_output=True):
+        """
+        :param custom_figure: to change figure in Plot
+        :param custom_column: Column for input Plot
+        :param test_target: if true plot train data and predict
+        :param plot_input: if true plot input target and custom_column
+        :param plot_output: if true plot output predict and actual base on test_target
+        :return None:
+        """
+        if plot_input:
+            self.plot_input(custom_figure=custom_figure, custom_column=custom_column)
+        self.fit()
+        if plot_output:
+            self.plot_output(custom_figure=custom_figure, test_target=test_target)
