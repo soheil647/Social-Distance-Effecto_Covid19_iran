@@ -2,18 +2,29 @@ from PreProsses import PreProcess
 from Model import ModelCreator
 
 
-train, target = PreProcess('Tehran').process_input_data()
-model = ModelCreator(train, target, test_split_available=True, test_size=0.2)
+# train, target = PreProcess('Tehran').process_input_data()
+# print(train)
+# model = ModelCreator(train, target, test_split_available=True, test_size=0.5, estimator='randomForest', estimators=['tree', 'knn', 'linear', 'randomForest'])
 # model.train_model('svr')
 # model.train_model('logistic')
-model.train_model('tree')
-model.train_model('linear')
+# model.train_model('tree')
+# model.train_model('linear')
 # model.train_model('knn')
 # model.train_model('lasso')
 # model.train_model('ridge')
-model.train_model('bayesian')
+# model.train_model('bayesian')
+# model.train_model('tree')
+# model.train_model('bagging')
+# model.train_model('voting')
 # print()
 # print()
+
+
+train, target = PreProcess('Tehran').process_input_data(drop=True)
+model = ModelCreator(train, target, test_split_available=True, test_size=0.2, estimator='randomForest', estimators=['tree', 'knn', 'linear', 'randomForest'])
+model.train_model('linear')
+model.train_model('bagging')
+model.train_model('voting')
 
 # train, target = PreProcess('Travel_data.xlsx').process_input_data()
 # model = ModelCreator(train, target, test_split_available=True, test_size=0.2)

@@ -12,16 +12,21 @@ my_columns = ['mehvar_code', 'mehvar_name', "start_time", "finish_time", 'durati
               'total_cars']
 
 extra_files = ["Model.py", "FindTravels.py", "Travels", "Append_CSVs.py", "CorrectDatas.py"]
-extension = 'xlsx'
-os.chdir("/home/sspc/Desktop/Datas/Citiyes")
-all_excels = [i for i in glob.glob('*.{}'.format(extension))]
 
-all_cities = [i for i in glob.glob('*') if i not in extra_files and i not in all_excels]
+xlsx_extension = 'xlsx'
+csv_extension = 'csv'
+
+os.chdir("/home/sspc/Desktop/Datas/Citiyes")
+all_excels = [i for i in glob.glob('*.{}'.format(xlsx_extension))]
+all_csv = [i for i in glob.glob('*.{}'.format(csv_extension))]
+
+all_cities = [i for i in glob.glob('*') if i not in extra_files and i not in all_excels + all_csv]
 for city in all_cities:
     os.chdir("/home/sspc/Desktop/Datas/Citiyes/" + city)
-    all_excels = [i for i in glob.glob('*.{}'.format(extension))]
+    all_excels = [i for i in glob.glob('*.{}'.format(xlsx_extension))]
+    all_csv = [i for i in glob.glob('*.{}'.format(csv_extension))]
 
-    all_folders = [i for i in glob.glob('*') if i not in all_excels]
+    all_folders = [i for i in glob.glob('*') if i not in all_excels + all_csv]
     for folder in all_folders:
         os.chdir("/home/sspc/Desktop/Datas/Citiyes/" + city + '/' + folder)
         combined_csv = pd.DataFrame()

@@ -1,23 +1,26 @@
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.svm import SVR
-from sklearn.linear_model import LogisticRegression, LinearRegression, Ridge, Lasso, BayesianRidge, RidgeCV, LassoLars,\
+from sklearn.linear_model import LogisticRegression, LinearRegression, Ridge, Lasso, BayesianRidge, RidgeCV, LassoLars, \
     ElasticNet, TheilSenRegressor, ARDRegression, RANSACRegressor, HuberRegressor
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.preprocessing import PolynomialFeatures
+from sklearn.ensemble import RandomForestRegressor, BaggingRegressor, VotingRegressor
 
 
 class ModelCreator:
     """
-    Models Are; svr, knn, tree, logistic, linear, ridge, lasso, bayesian, ridgecv, LassoLars, ElasticNet
+    Models Are; svr, knn, tree, logistic, linear, ridge, lasso, bayesian, ridgecv, LassoLars, ElasticNetو
+    BaggingClassifier(base_estimator=estimator, n_estimators=number_of_estimator, max_features=0.5)
+
     Set test_split_available to split test and train
     """
 
-    def __init__(self, x_train, y_train, test_split_available=False, test_size=0.1, shuffle=True):
+    def __init__(self, x_train, y_train, test_split_available=False, test_size=0.1, shuffle=True, number_of_estimator=10, estimator=None, estimators=None):
         if test_split_available:
             self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(x_train, y_train,
                                                                                     test_size=test_size,
@@ -32,10 +35,28 @@ class ModelCreator:
         self.models = {'svr': SVR(), 'knn': KNeighborsRegressor(), 'tree': DecisionTreeRegressor(),
                        'logistic': LogisticRegression(), 'linear': LinearRegression(), 'ridge': Ridge(),
                        'ridgecv': RidgeCV(), 'lasso': Lasso(), 'lassolars': LassoLars(alpha=0.1),
-                       'bayesian': BayesianRidge(), 'ElasticNet': ElasticNet(), 'TheilSenRegressor': TheilSenRegressor(),
-                       'ARDRegression': ARDRegression(), 'RANSACRegressor': RANSACRegressor(), 'HuberRegressor': HuberRegressor()}
+                       'bayesian': BayesianRidge(), 'ElasticNet': ElasticNet(),
+                       'TheilSenRegressor': TheilSenRegressor(),
+                       'ARDRegression': ARDRegression(), 'RANSACRegressor': RANSACRegressor(),
+                       'HuberRegressor': HuberRegressor(), 'randomForest': RandomForestRegressor(n_estimators=50)}
+
+        self.estimator = self.models[estimator]
+        estimators_list = []
+        for i in range(len(estimators)):
+            estimators_list.append((estimators[i], self.models[estimators[i]]))
+
+        self.models = {'svr': SVR(), 'knn': KNeighborsRegressor(), 'tree': DecisionTreeRegressor(),
+                       'logistic': LogisticRegression(), 'linear': LinearRegression(), 'ridge': Ridge(),
+                       'ridgecv': RidgeCV(), 'lasso': Lasso(), 'lassolars': LassoLars(alpha=0.1),
+                       'bayesian': BayesianRidge(), 'ElasticNet': ElasticNet(),
+                       'TheilSenRegressor': TheilSenRegressor(),
+                       'ARDRegression': ARDRegression(), 'RANSACRegressor': RANSACRegressor(),
+                       'HuberRegressor': HuberRegressor(), 'randomForest': RandomForestRegressor(n_estimators=50),
+                       'bagging': BaggingRegressor(base_estimator=self.estimator, n_estimators=number_of_estimator, max_features=0.8),
+                       'voting': VotingRegressor(estimators=estimators_list)}
 
     def fit(self, model_name, show_train_error=False, show_output=False):
+        # regr = BaggingClassifier(base_estimator=LinearRegression(), n_estimators=10, max_features=0.5)
         regr = self.models[model_name]
         regr.fit(self.x_train, self.y_train)
         self.y_predict_test = regr.predict(self.x_test)
@@ -50,6 +71,9 @@ class ModelCreator:
         print('Mean Absolute Error:', mean_absolute_error(self.y_test, self.y_predict_test))
         print('Mean Squared Error:', mean_squared_error(self.y_test, self.y_predict_test))
         print('Root Mean Squared Error:', np.sqrt(mean_squared_error(self.y_test, self.y_predict_test)))
+
+        scores = cross_val_score(regr, self.x_test, self.y_test, cv=5)
+        print('Score is: ', scores.mean())
 
         if show_train_error:
             print("########### Train Error for ###########")

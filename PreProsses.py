@@ -21,7 +21,7 @@ class PreProcess:
                                        int(df['date'][i].split('/')[2])).to_gregorian()
         df.to_csv('Travel_data.xlsx')
 
-    def process_input_data(self):
+    def process_input_data(self, drop=False):
         corona_data = pd.read_excel('Corona.xlsx')
         corona_data.set_index('date', inplace=True)
         input_city = "/home/sspc/Desktop/Datas/Citiyes/" + self.city_name
@@ -36,18 +36,21 @@ class PreProcess:
         data_file_city.set_index('date', inplace=True)
 
         data = pd.concat([data_file_city, corona_data], axis=1).dropna()
+        # return data
         features = data.drop('Daily New Cases', axis=1)
         target = data['Daily New Cases']
 
-        # To Add Date to Columns in Day + month : '02-11 = 112
-        # features['date'] = features.index
-        # for i in range(len(features)):
-        #     features['date'][i] = str(features['date'][i].day) + str(features['date'][i].month)
+        if drop:
 
-        # To drop Corona Columns
-        # features = features.drop('Daily Deaths', axis=1).drop('Daily Active Cases', axis=1).drop('Daily New Recoveries', axis=1)
+            # To Add Date to Columns in Day + month : '02-11 = 112
+            # features['date'] = features.index
+            # for i in range(len(features)):
+            #     features['date'][i] = str(features['date'][i].day) + str(features['date'][i].month)
 
-        # features.iloc[1] = np.nan
-        # features = features.interpolate(limit_direction='both', kind='cubic')
+            # To drop Corona Columns
+            features = features.drop('Daily Deaths', axis=1).drop('Daily Active Cases', axis=1).drop('Daily New Recoveries', axis=1)
+
+            # features.iloc[1] = np.nan
+            # features = features.interpolate(limit_direction='both', kind='cubic')
 
         return features, target
