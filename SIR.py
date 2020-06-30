@@ -18,6 +18,7 @@ def fitFunc(sir_values, time, beta, gamma, k):
     res[2] = gamma * i
     return res
 
+
 def lsq(model, xdata, ydata, n):
     """least squares"""
     time_total = xdata
@@ -42,6 +43,7 @@ def lsq(model, xdata, ydata, n):
     # Get the second column of data corresponding to I
     return Nt[:,1]
 
+
 def sse(model, N0, time_total, k, data_record, n):
     """sum of square errors"""
     def result(x):
@@ -54,11 +56,13 @@ def sse(model, N0, time_total, k, data_record, n):
         return diff
     return result
 
+
 def sir_model(y, x, beta, gamma):
     S = -beta * y[0] * y[1] / N
     R = gamma * y[1]
     I = -(S + R)
     return S, I, R
+
 
 def fit_odeint(x, beta, gamma):
     return integrate.odeint(sir_model, (S0, I0, R0), x, args=(beta, gamma))[:,1]

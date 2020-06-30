@@ -2,39 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f491e2a1-8c51-4c75-8051-38e408ea37d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Citiyes/Esfahan/98_esfand_esfahan/98_esfand_esfahan.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Citiyes/Ghom/98_bahman_ghom/98_bahman_ghom.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Citiyes/Tehran/98_bahman_tehran/98_bahman_tehran.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LSTM.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SIR.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anita.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Convolution.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.~lock.Corona.xlsx#" beforeDir="false" afterPath="$PROJECT_DIR$/.~lock.Corona.xlsx#" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Esfahan/98_bahman_esfahan.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Esfahan/98_bahman_esfahan.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Esfahan/98_bahman_esfahan/98_bahman_esfahan.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Esfahan/98_bahman_esfahan/98_bahman_esfahan.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Esfahan/98_esfand_esfahan.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Esfahan/98_esfand_esfahan.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Esfahan/99_farvardin_esfahan.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Esfahan/99_farvardin_esfahan.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Esfahan/99_farvardin_esfahan/99_farvardin_esfahan.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Esfahan/99_farvardin_esfahan/99_farvardin_esfahan.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Esfahan/99_ordibehesht_esfahan.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Esfahan/99_ordibehesht_esfahan.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Esfahan/99_ordibehesht_esfahan/99_ordibehesht_esfahan.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Esfahan/99_ordibehesht_esfahan/99_ordibehesht_esfahan.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Ghom/98_bahman_ghom.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Ghom/98_bahman_ghom.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Ghom/98_esfand_ghom.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Ghom/98_esfand_ghom.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Ghom/98_esfand_ghom/98_esfand_ghom.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Ghom/98_esfand_ghom/98_esfand_ghom.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Ghom/99_farvardin_ghom.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Ghom/99_farvardin_ghom.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Ghom/99_farvardin_ghom/99_farvardin_ghom.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Ghom/99_farvardin_ghom/99_farvardin_ghom.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Ghom/99_ordibehesht_ghom.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Ghom/99_ordibehesht_ghom.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Ghom/99_ordibehesht_ghom/99_ordibehesht_ghom.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Ghom/99_ordibehesht_ghom/99_ordibehesht_ghom.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Tehran/98_bahman_tehran.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Tehran/98_bahman_tehran.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Tehran/98_esfand_tehran.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Tehran/98_esfand_tehran.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Tehran/98_esfand_tehran/98_esfand_tehran.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Tehran/98_esfand_tehran/98_esfand_tehran.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Tehran/99_farvardin_tehran.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Tehran/99_farvardin_tehran.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Tehran/99_farvardin_tehran/99_farvardin_tehran.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Tehran/99_farvardin_tehran/99_farvardin_tehran.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Tehran/99_ordibehesht_tehran.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Tehran/99_ordibehesht_tehran.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Citiyes/Tehran/99_ordibehesht_tehran/99_ordibehesht_tehran.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Citiyes/Tehran/99_ordibehesht_tehran/99_ordibehesht_tehran.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Corona.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Corona.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CorrectDatas.py" beforeDir="false" afterPath="$PROJECT_DIR$/CorrectDatas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FindTravels.py" beforeDir="false" afterPath="$PROJECT_DIR$/FindTravels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LSTM.py" beforeDir="false" afterPath="$PROJECT_DIR$/LSTM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreProsses.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreProsses.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SIR.py" beforeDir="false" afterPath="$PROJECT_DIR$/SIR.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +53,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -88,7 +61,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="FindTravels" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Convolution" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Datas" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -101,7 +74,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FindTravels.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Convolution.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -201,10 +174,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.Convolution" />
+        <item itemvalue="Python.LSTM" />
         <item itemvalue="Python.SIR" />
         <item itemvalue="Python.Model" />
-        <item itemvalue="Python.LSTM" />
-        <item itemvalue="Python.FindTravels" />
       </list>
     </recent_temporary>
   </component>
@@ -235,6 +208,8 @@
       <workItem from="1593254644888" duration="2114000" />
       <workItem from="1593257424729" duration="609000" />
       <workItem from="1593281518180" duration="4607000" />
+      <workItem from="1593340326317" duration="4604000" />
+      <workItem from="1593345603556" duration="4907000" />
     </task>
     <servers />
   </component>
@@ -253,22 +228,22 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="762" y="295" width="452" height="514" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1593257060892" />
-    <state width="1807" height="351" key="GridCell.Tab.0.bottom" timestamp="1593292259548">
+    <state width="1807" height="351" key="GridCell.Tab.0.bottom" timestamp="1593350683361">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="351" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1593292259548" />
-    <state width="1807" height="351" key="GridCell.Tab.0.center" timestamp="1593292259546">
+    <state width="1807" height="351" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1593350683361" />
+    <state width="1807" height="351" key="GridCell.Tab.0.center" timestamp="1593350683361">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="351" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1593292259546" />
-    <state width="1807" height="351" key="GridCell.Tab.0.left" timestamp="1593292259546">
+    <state width="1807" height="351" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1593350683361" />
+    <state width="1807" height="351" key="GridCell.Tab.0.left" timestamp="1593350683360">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="351" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1593292259546" />
-    <state width="1807" height="351" key="GridCell.Tab.0.right" timestamp="1593292259547">
+    <state width="1807" height="351" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1593350683360" />
+    <state width="1807" height="351" key="GridCell.Tab.0.right" timestamp="1593350683361">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="351" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1593292259547" />
+    <state width="1807" height="351" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1593350683361" />
     <state width="1807" height="344" key="GridCell.Tab.1.bottom" timestamp="1592502981982">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -289,14 +264,14 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="780" y="265" width="416" height="574" key="RollbackChangesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1592852928413" />
-    <state x="482" y="187" key="SettingsEditor" timestamp="1593076223908">
+    <state x="482" y="187" key="SettingsEditor" timestamp="1593345589751">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="482" y="187" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1593076223908" />
-    <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1593107906505">
+    <state x="482" y="187" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1593345589751" />
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1593340329397">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1593107906505" />
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1593340329397" />
     <state x="738" y="196" width="501" height="713" key="refactoring.ChangeSignatureDialog" timestamp="1592646187645">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -310,13 +285,14 @@
     <SUITE FILE_PATH="coverage/Datas$KNN_Model_Ways_and_Corona.coverage" NAME="Model Coverage Results" MODIFIED="1593016520519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Datas$PreProsses.coverage" NAME="PreProsses Coverage Results" MODIFIED="1593171392602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Datas$FindTravels.coverage" NAME="FindTravels Coverage Results" MODIFIED="1593203415315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Datas$LSTM.coverage" NAME="LSTM Coverage Results" MODIFIED="1593209752214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Datas$LSTM.coverage" NAME="LSTM Coverage Results" MODIFIED="1593340965414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Datas$CorrectDatas.coverage" NAME="CorrectDatas Coverage Results" MODIFIED="1593202815160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Datas$FillCSVs.coverage" NAME="FillCSVs Coverage Results" MODIFIED="1592827516581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Datas$Model.coverage" NAME="Model Coverage Results" MODIFIED="1593281991451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Datas$Convolution.coverage" NAME="Convolution Coverage Results" MODIFIED="1593348103277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Datas$SIR.coverage" NAME="SIR Coverage Results" MODIFIED="1593285643938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Datas$Append_CSVs.coverage" NAME="Append_CSVs Coverage Results" MODIFIED="1593171269378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Datas$MergeCSVs.coverage" NAME="MergeCSVs Coverage Results" MODIFIED="1592737213515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Datas$main.coverage" NAME="main Coverage Results" MODIFIED="1593286301602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Datas$main.coverage" NAME="main Coverage Results" MODIFIED="1593349897230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -56,7 +56,8 @@ class ModelCreator:
                        'voting': VotingRegressor(estimators=estimators_list)}
 
     def fit(self, model_name, show_train_error=False, show_output=False):
-        # regr = BaggingClassifier(base_estimator=LinearRegression(), n_estimators=10, max_features=0.5)
+        # regr = BaggingRegressor(base_estimator=LinearRegression(), n_estimators=10, max_features=0.5)
+        # regr = VotingRegressor(estimators=[('bag', BaggingRegressor(base_estimator=KNeighborsRegressor(), n_estimators=50, max_features=0.8)), ('bag2', BaggingRegressor(base_estimator=RandomForestRegressor(n_estimators=10), n_estimators=50, max_features=0.8)), ('forest', RandomForestRegressor(n_estimators=50))])
         regr = self.models[model_name]
         regr.fit(self.x_train, self.y_train)
         self.y_predict_test = regr.predict(self.x_test)

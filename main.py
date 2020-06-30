@@ -20,11 +20,16 @@ from Model import ModelCreator
 # print()
 
 
-train, target = PreProcess('Tehran').process_input_data(drop=True)
-model = ModelCreator(train, target, test_split_available=True, test_size=0.2, estimator='randomForest', estimators=['tree', 'knn', 'linear', 'randomForest'])
+train, target = PreProcess('Ghom').process_input_data(drop=False)
+model = ModelCreator(train, target, test_split_available=True, test_size=0.2, estimator='randomForest', estimators=['tree', 'bayesian', 'linear', 'randomForest'])
 model.train_model('linear')
 model.train_model('bagging')
 model.train_model('voting')
+# model.train_model('ElasticNet')
+# model.train_model('TheilSenRegressor')
+# model.train_model('ARDRegression')
+# model.train_model('RANSACRegressor')
+# model.train_model('HuberRegressor')
 
 # train, target = PreProcess('Travel_data.xlsx').process_input_data()
 # model = ModelCreator(train, target, test_split_available=True, test_size=0.2)
