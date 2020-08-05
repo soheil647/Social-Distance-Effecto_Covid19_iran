@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.ensemble import RandomForestRegressor, BaggingRegressor, VotingRegressor
+from sklearn.ensemble import AdaBoostRegressor
 
 
 class ModelCreator:
@@ -20,11 +21,12 @@ class ModelCreator:
     Set test_split_available to split test and train
     """
 
-    def __init__(self, x_train, y_train, test_split_available=False, test_size=0.1, shuffle=True, number_of_estimator=10, estimator=None, estimators=None):
+    def __init__(self, x_train, y_train, test_split_available=False, test_size=0.1, shuffle=True, number_of_estimator=10, estimator=None, estimators=None, random_state=None):
         if test_split_available:
             self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(x_train, y_train,
                                                                                     test_size=test_size,
-                                                                                    shuffle=shuffle)
+                                                                                    shuffle=shuffle,
+                                                                                    random_state=random_state)
         else:
             self.x_test = x_train
             self.y_test = y_train
@@ -38,7 +40,8 @@ class ModelCreator:
                        'bayesian': BayesianRidge(), 'ElasticNet': ElasticNet(),
                        'TheilSenRegressor': TheilSenRegressor(),
                        'ARDRegression': ARDRegression(), 'RANSACRegressor': RANSACRegressor(),
-                       'HuberRegressor': HuberRegressor(), 'randomForest': RandomForestRegressor(n_estimators=50)}
+                       'HuberRegressor': HuberRegressor(), 'randomForest': RandomForestRegressor(n_estimators=50),
+                       'boost': AdaBoostRegressor(random_state=0, n_estimators=100)}
 
         self.estimator = self.models[estimator]
         estimators_list = []
@@ -53,11 +56,9 @@ class ModelCreator:
                        'ARDRegression': ARDRegression(), 'RANSACRegressor': RANSACRegressor(),
                        'HuberRegressor': HuberRegressor(), 'randomForest': RandomForestRegressor(n_estimators=50),
                        'bagging': BaggingRegressor(base_estimator=self.estimator, n_estimators=number_of_estimator, max_features=0.8),
-                       'voting': VotingRegressor(estimators=estimators_list)}
+                       'voting': VotingRegressor(estimators=estimators_list), 'boost': AdaBoostRegressor(random_state=0, n_estimators=100)}
 
     def fit(self, model_name, show_train_error=False, show_output=False):
-        # regr = BaggingRegressor(base_estimator=LinearRegression(), n_estimators=10, max_features=0.5)
-        # regr = VotingRegressor(estimators=[('bag', BaggingRegressor(base_estimator=KNeighborsRegressor(), n_estimators=50, max_features=0.8)), ('bag2', BaggingRegressor(base_estimator=RandomForestRegressor(n_estimators=10), n_estimators=50, max_features=0.8)), ('forest', RandomForestRegressor(n_estimators=50))])
         regr = self.models[model_name]
         regr.fit(self.x_train, self.y_train)
         self.y_predict_test = regr.predict(self.x_test)
@@ -83,7 +84,6 @@ class ModelCreator:
             print('Mean Absolute Error:', mean_absolute_error(self.y_train, self.y_predict_train))
             print('Mean Squared Error:', mean_squared_error(self.y_train, self.y_predict_train))
             print('Root Mean Squared Error:', np.sqrt(mean_squared_error(self.y_train, self.y_predict_train)))
-        print()
 
     def plot_input(self, custom_figure, custom_column):
         custom_figure()
@@ -109,7 +109,7 @@ class ModelCreator:
         plt.xlabel('Day')
         plt.ylabel('New Cases')
         plt.title(model_name)
-        plt.legend([predicted, actual])
+        plt.legend(['Predicted', 'Actual'])
         plt.show()
 
     def train_model(self, model_name, custom_figure=plt.figure, custom_column='total_cars', test_target=True,
@@ -131,4 +131,4 @@ class ModelCreator:
         self.fit(model_name=model_name, show_train_error=show_train_error, show_output=show_output)
         if plot_output:
             self.plot_output(model_name=model_name, custom_figure=custom_figure, test_target=test_target)
-        print("END MODEL")
+        print("END MODEL\n")

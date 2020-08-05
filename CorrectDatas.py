@@ -27,6 +27,8 @@ def find_max_day(month_name):
         return 31
     if month_name == 'farvardin':
         return 31
+    if month_name == 'khordad':
+        return 31
 
 
 def nan_columns(row):
@@ -56,14 +58,16 @@ for city in all_cities:
     all_excels = [i for i in glob.glob('*.{}'.format(xlsx_extension))]
     all_csv = [i for i in glob.glob('*.{}'.format(csv_extension))]
 
-    all_folders = [i for i in glob.glob('*') if i not in (all_excels + all_csv)]
-    for folder in all_folders:
+    all_months = [i for i in glob.glob('*') if i not in (all_excels + all_csv)]
+    for month_name in all_months:
         empty_roads = 0
         combined_csv = pd.DataFrame()
         frame = []
-        os.chdir("/home/sspc/Desktop/Datas/Citiyes/" + city + "/" + folder)
-        if os.path.isfile(folder + '.xlsx'):
-            os.remove(folder + '.xlsx')
+        os.chdir("/home/sspc/Desktop/Datas/Citiyes/" + city + "/" + month_name)
+        if os.path.isfile(month_name + '.xlsx'):
+            print("City: ", city, " Month: ", month_name, " Passed")
+            continue
+            # os.remove(month_name + '.xlsx')
         all_filenames = [i for i in glob.glob('*.{}'.format(xlsx_extension))]
         for file in all_filenames:
             df = pd.read_excel(file)
@@ -80,7 +84,7 @@ for city in all_cities:
                 continue
             k = 0
             i = 0
-            max_day = find_max_day(folder.split(sep='_')[1])
+            max_day = find_max_day(month_name.lower())
             while i < max_day:
                 k = k + 1
                 if i >= len(df) and k != max_day:
@@ -126,8 +130,12 @@ for city in all_cities:
 
             df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric)
             df = df.interpolate(limit_direction='both', kind='cubic')
+            # print(df)
             df[numeric_columns] = df[numeric_columns].astype(int)
             frame.append(df)
-        print(folder, "Empty roads are: ", empty_roads)
+        print("City: ", city, " Month: ", month_name, "Empty roads are: ", empty_roads)
+        if len(frame) == 0:
+            print("City: ", city)
+            continue
         combined_csv = pd.concat(frame)
-        combined_csv.to_csv(folder + '.xlsx')
+        combined_csv.to_csv(month_name + '.xlsx')

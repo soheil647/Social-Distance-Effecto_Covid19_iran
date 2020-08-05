@@ -1,5 +1,22 @@
 from PreProsses import PreProcess
 from Model import ModelCreator
+import numpy as np
+
+# for i in range(14):
+#     train, target = PreProcess().process_input_data(drop=True, country=True, plot=True, shift=-i)
+
+rand = np.random.randint(0, 100)
+print(rand)
+train, target = PreProcess('Ghom').process_input_data(drop=True, country=True, plot=True, shift=0, normalize=True)
+# train, target = PreProcess('Ghom').process_input_data(drop=True, country=True, plot=True, shift=0)
+# train, target = PreProcess('Ghom').process_input_data(drop=True, country=True, plot=True, shift=-20)
+# print(train)
+# print(target)
+model = ModelCreator(train, target, test_split_available=True, test_size=0.2, estimator='randomForest', estimators=['tree', 'bayesian', 'linear', 'randomForest'], random_state=rand)
+# model.train_model('linear')
+# model.train_model('bagging')
+model.train_model('voting')
+# model.train_model('boost')
 
 
 # train, target = PreProcess('Tehran').process_input_data()
@@ -18,13 +35,32 @@ from Model import ModelCreator
 # model.train_model('voting')
 # print()
 # print()
+# rand = np.random.randint(0, 100)
+# print("++++++++++++++++ Esfahan ++++++++++++++++")
+# train, target = PreProcess('Esfahan').process_input_data(drop=True)
+# model = ModelCreator(train, target, test_split_available=True, test_size=0.2, estimator='randomForest', estimators=['tree', 'bayesian', 'linear', 'randomForest'], random_state=rand)
+# model.train_model('linear')
+# model.train_model('bagging')
+# model.train_model('voting')
+# model.train_model('boost')
 
 
-train, target = PreProcess('Ghom').process_input_data(drop=False)
-model = ModelCreator(train, target, test_split_available=True, test_size=0.2, estimator='randomForest', estimators=['tree', 'bayesian', 'linear', 'randomForest'])
-model.train_model('linear')
-model.train_model('bagging')
-model.train_model('voting')
+# print("++++++++++++++++ Tehran ++++++++++++++++")
+# train, target = PreProcess('Tehran').process_input_data(drop=True)
+# model = ModelCreator(train, target, test_split_available=True, test_size=0.2, estimator='randomForest', estimators=['tree', 'bayesian', 'linear', 'randomForest'], random_state=rand)
+# model.train_model('linear')
+# model.train_model('bagging')
+# model.train_model('voting')
+# model.train_model('boost')
+
+# print("++++++++++++++++ Ghom ++++++++++++++++")
+# train, target = PreProcess('Ghom').process_input_data(drop=True, merge=True)
+# print(train)
+# model = ModelCreator(train, target, test_split_available=True, test_size=0.2, estimator='randomForest', estimators=['tree', 'bayesian', 'linear', 'randomForest'], random_state=rand)
+# model.train_model('linear')
+# model.train_model('bagging')
+# model.train_model('voting')
+# model.train_model('boost')
 # model.train_model('ElasticNet')
 # model.train_model('TheilSenRegressor')
 # model.train_model('ARDRegression')

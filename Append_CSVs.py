@@ -4,22 +4,20 @@ import pandas as pd
 
 
 def create_sorted_month(my_list):
-    sorted_list = ['', '', '', '']
+    sorted_list = ['', '', '', '', '']
     for i in range(len(my_list)):
-        if my_list[i].split('_')[1] == 'bahman':
+        if my_list[i].split('.')[0].lower() == 'bahman':
             sorted_list[0] = my_list[i]
-        if my_list[i].split('_')[1] == 'esfand':
+        if my_list[i].split('.')[0].lower() == 'esfand':
             sorted_list[1] = my_list[i]
-        if my_list[i].split('_')[1] == 'farvardin':
+        if my_list[i].split('.')[0].lower() == 'farvardin':
             sorted_list[2] = my_list[i]
-        if my_list[i].split('_')[1] == 'ordibehesht':
+        if my_list[i].split('.')[0].lower() == 'ordibehesht':
             sorted_list[3] = my_list[i]
+        if my_list[i].split('.')[0].lower() == 'khordad':
+            sorted_list[4] = my_list[i]
     return sorted_list
 
-
-def swapPositions(my_list, pos1, pos2):
-    my_list[pos1], my_list[pos2] = my_list[pos2], my_list[pos1]
-    return my_list
 
 extra_files = ["Model.py", "FindTravels.py", "Travels", "Append_CSVs.py", "CorrectDatas.py"]
 extension = 'xlsx'

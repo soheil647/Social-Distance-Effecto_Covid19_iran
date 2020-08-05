@@ -45,5 +45,7 @@ for city in all_cities:
             print("city: ", city, "day number: ", i, " month number: ", df['start_time'].str.split(pat='/')[i][1])
         os.chdir("/home/sspc/Desktop/Datas/Citiyes/" + city)
         if os.path.isfile(folder + '.xlsx'):
-            os.remove(folder + '.xlsx')
+            print("Folder: ", folder, " Passed")
+            continue
+            # os.remove(folder + '.xlsx')
         new_df.to_csv(folder + '.xlsx')

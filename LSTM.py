@@ -47,7 +47,7 @@ dataset = PreProcess('Tehran').process_input_data()
 # print(dataset)
 
 # specify the number of lag hours
-n_hours = 2
+n_hours = 1
 n_features = 11
 
 # frame as supervised learning
@@ -81,7 +81,9 @@ model.add(Dense(11, input_shape=(train_X.shape[1], train_X.shape[2])))
 model.add(Dense(9))
 model.add(Dense(7))
 # model.add(GRU(100, input_shape=(train_X.shape[1], train_X.shape[2])))
-model.add(LSTM(100, recurrent_dropout=0.3))
+model.add(GRU(30, recurrent_dropout=0.5, return_sequences=True))
+model.add(GRU(30, recurrent_dropout=0.5, return_sequences=True))
+model.add(LSTM(30, recurrent_dropout=0.5))
 model.add(Dense(9))
 model.add(Dense(11))
 model.add(Dense(1))
@@ -91,7 +93,7 @@ start = time.time()
 # history = model.fit(train_X, train_y, batch_size=72, epochs=30000, validation_split=0.2, verbose=2,
 #                     shuffle=False)
 
-history = model.fit(train_X, train_y, batch_size=16, epochs=1000, validation_split=0.2, verbose=2)
+history = model.fit(train_X, train_y, batch_size=16, epochs=200, validation_split=0.2, verbose=2)
 print("Elapsed Time for fitiing: ", time.time()-start)
 
 # plot history
