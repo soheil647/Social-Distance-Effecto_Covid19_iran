@@ -75,7 +75,7 @@ class ModelCreator:
         print('Root Mean Squared Error:', np.sqrt(mean_squared_error(self.y_test, self.y_predict_test)))
 
         scores = cross_val_score(regr, self.x_test, self.y_test, cv=5)
-        print('Score is: ', scores.mean())
+        print('Cross Score is: ', scores.mean())
 
         if show_train_error:
             print("########### Train Error for ###########")
@@ -84,6 +84,8 @@ class ModelCreator:
             print('Mean Absolute Error:', mean_absolute_error(self.y_train, self.y_predict_train))
             print('Mean Squared Error:', mean_squared_error(self.y_train, self.y_predict_train))
             print('Root Mean Squared Error:', np.sqrt(mean_squared_error(self.y_train, self.y_predict_train)))
+            scores = cross_val_score(regr, self.x_test, self.y_test, cv=5)
+            print('Cross Score is: ', scores.mean())
 
     def plot_input(self, custom_figure, custom_column):
         custom_figure()
@@ -105,7 +107,7 @@ class ModelCreator:
             actual, = plt.plot(list(self.y_test), label='Actual')
         else:
             predicted, = plt.plot(self.y_predict_train, label='Predicted')
-            actual, = plt.plot(self.y_train, label='Actual')
+            actual, = plt.plot(list(self.y_train), label='Actual')
         plt.xlabel('Day')
         plt.ylabel('New Cases')
         plt.title(model_name)

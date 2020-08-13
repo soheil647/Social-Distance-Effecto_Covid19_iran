@@ -5,17 +5,18 @@ import numpy as np
 # for i in range(14):
 #     train, target = PreProcess().process_input_data(drop=True, country=True, plot=True, shift=-i)
 
-rand = np.random.randint(0, 100)
+# rand = np.random.randint(0, 100)
+rand = 42
 print(rand)
-train, target = PreProcess('Ghom').process_input_data(drop=True, country=True, plot=True, shift=0, normalize=True)
+train, target = PreProcess('Ghom').process_input_data(drop=True, country=True, plot=False, shift=-8, normalize=False)
 # train, target = PreProcess('Ghom').process_input_data(drop=True, country=True, plot=True, shift=0)
 # train, target = PreProcess('Ghom').process_input_data(drop=True, country=True, plot=True, shift=-20)
 # print(train)
 # print(target)
-model = ModelCreator(train, target, test_split_available=True, test_size=0.2, estimator='randomForest', estimators=['tree', 'bayesian', 'linear', 'randomForest'], random_state=rand)
+model = ModelCreator(train, target, test_split_available=True, test_size=0.2, estimator='randomForest', estimators=['knn', 'lasso', 'linear', 'randomForest'], random_state=rand)
 # model.train_model('linear')
 # model.train_model('bagging')
-model.train_model('voting')
+model.train_model('voting', show_train_error=True)
 # model.train_model('boost')
 
 
